@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Form Filler — Seminars &amp; Events</title>
+<style>
+  :root {
+    --bg: #f4f6fb;
+    --card: #ffffff;
+    --ink: #1a2233;
+    --muted: #5b6577;
+    --line: #dfe4ee;
+    --brand: #2b5ce6;
+    --brand-dark: #1e46b8;
+    --ok: #17915c;
+    --ok-bg: #e6f6ee;
+    --shadow: 0 1px 3px rgba(20,30,60,.08), 0 8px 24px rgba(20,30,60,.06);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  header.appbar {
+    background: var(--brand);
+    color: #fff;
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+  }
+  header.appbar h1 { margin: 0; font-size: 20px; font-weight: 700; }
+  header.appbar p { margin: 4px 0 0; font-size: 13px; opacity: .9; }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 20px; }
+  .tabs { display: flex; gap: 8px; margin: 18px 0; flex-wrap: wrap; }
+  .tab {
+    border: 1px solid var(--line);
+    background: #fff;
+    color: var(--muted);
+    padding: 9px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .tab.active { background: var(--brand); color: #fff; border-color: var(--brand); }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: var(--shadow);
+    margin-bottom: 18px;
+  }
+  h2 { font-size: 17px; margin: 0 0 4px; }
+  .sub { color: var(--muted); font-size: 13px; margin: 0 0 18px; }
+  label { display: block; font-size: 13px; font-weight: 600; margin: 14px 0 5px; color: var(--ink); }
+  input, textarea, select {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    font-size: 15px;
+    font-family: inherit;
+    background: #fff;
+    color: var(--ink);
+  }
+  input:focus, textarea:focus, select:focus { outline: 2px solid var(--brand); border-color: var(--brand); }
+  textarea { min-height: 70px; resize: vertical; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+  @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+  .row-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+  button.btn {
+    border: none;
+    background: var(--brand);
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  button.btn:hover { background: var(--brand-dark); }
+  button.btn.ghost { background: #fff; color: var(--brand); border: 1px solid var(--brand); }
+  button.btn.ghost:hover { background: #eef2fe; }
+  button.btn.small { padding: 8px 14px; font-size: 13px; }
+  .saved-flag {
+    display: none;
+    background: var(--ok-bg);
+    color: var(--ok);
+    border: 1px solid #bfe6d2;
+    padding: 10px 14px;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 16px;
+  }
+  .saved-flag.show { display: block; }
+  .template-list { display: grid; gap: 12px; }
+  .template {
+    display: flex; justify-content: space-between; align-items: center;
+    border: 1px solid var(--line); border-radius: 11px; padding: 14px 16px;
+  }
+  .template h3 { margin: 0; font-size: 15px; }
+  .template p { margin: 2px 0 0; color: var(--muted); font-size: 13px; }
+  .hint { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  footer.note { text-align: center; color: var(--muted); font-size: 12px; padding: 10px 20px 30px; }
+  .badge { display:inline-block; background:#eef2fe; color:var(--brand); font-size:11px; font-weight:700; padding:2px 8px; border-radius:999px; margin-left:8px; }
+
+  /* Print / PDF view */
+  #printArea { display: none; }
+  @media print {
+    body * { visibility: hidden; }
+    #printArea, #printArea * { visibility: visible; }
+    #printArea { display: block; position: absolute; left: 0; top: 0; width: 100%; padding: 40px; }
+    .no-print { display: none !important; }
+  }
+  #printArea h1 { font-size: 22px; margin: 0 0 4px; }
+  #printArea .p-meta { color: #444; font-size: 13px; margin-bottom: 24px; }
+  #printArea table { width: 100%; border-collapse: collapse; }
+  #printArea td { padding: 9px 6px; border-bottom: 1px solid #ccc; font-size: 14px; vertical-align: top; }
+  #printArea td.k { font-weight: 700; width: 38%; color: #222; }
+  #printArea .p-sign { margin-top: 40px; display:flex; justify-content:space-between; }
+  #printArea .p-sign div { border-top: 1px solid #333; padding-top: 6px; font-size: 12px; width: 45%; }
+</style>
+</head>
+<body>
+
+<header class="appbar">
+  <h1>📝 Form Filler</h1>
+  <p>Save your details once, fill seminar &amp; event forms instantly — works offline.</p>
+</header>
+
+<div class="wrap no-print">
+  <div class="tabs">
+    <button class="tab active" data-tab="profile">1 · My Info</button>
+    <button class="tab" data-tab="forms">2 · Fill a Form</button>
+  </div>
+
+  <!-- ===== PROFILE TAB ===== -->
+  <section id="tab-profile" class="card">
+    <h2>My Information</h2>
+    <p class="sub">Fill this in once. It's saved on this device only (in your browser) and auto-fills every form.</p>
+
+    <div class="grid">
+      <div><label>First name</label><input id="firstName" placeholder="Jane"></div>
+      <div><label>Last name</label><input id="lastName" placeholder="Doe"></div>
+    </div>
+    <div class="grid">
+      <div><label>Email</label><input id="email" type="email" placeholder="jane@example.com"></div>
+      <div><label>Phone</label><input id="phone" placeholder="(555) 123-4567"></div>
+    </div>
+    <label>Street address</label><input id="address" placeholder="123 Main St, Apt 4">
+    <div class="grid">
+      <div><label>City</label><input id="city" placeholder="Springfield"></div>
+      <div><label>State / Region</label><input id="state" placeholder="IL"></div>
+    </div>
+    <div class="grid">
+      <div><label>ZIP / Postal code</label><input id="zip" placeholder="62704"></div>
+      <div><label>Country</label><input id="country" placeholder="USA"></div>
+    </div>
+    <div class="grid">
+      <div><label>Date of birth</label><input id="dob" type="date"></div>
+      <div><label>Organization / Employer</label><input id="org" placeholder="Optional"></div>
+    </div>
+    <label>Job title / Role</label><input id="jobTitle" placeholder="Optional">
+    <label>Dietary / Accessibility needs</label><input id="dietary" placeholder="e.g. Vegetarian, wheelchair access — optional">
+    <label>Emergency contact (name &amp; phone)</label><input id="emergency" placeholder="Optional">
+
+    <div class="row-actions">
+      <button class="btn" onclick="saveProfile()">💾 Save my info</button>
+      <button class="btn ghost" onclick="clearProfile()">Clear</button>
+    </div>
+    <div id="savedFlag" class="saved-flag">✓ Saved on this device.</div>
+  </section>
+
+  <!-- ===== FORMS TAB ===== -->
+  <section id="tab-forms" class="card" style="display:none;">
+    <h2>Fill a Form</h2>
+    <p class="sub">Pick a template. Your saved info is filled in automatically — review, add event details, then print or save as PDF.</p>
+    <div id="templateList" class="template-list"></div>
+  </section>
+
+  <!-- ===== FORM EDITOR (hidden until a template is chosen) ===== -->
+  <section id="formEditor" class="card" style="display:none;">
+    <h2 id="editorTitle">Registration</h2>
+    <p class="sub">Everything is editable. When it looks right, click <strong>Print / Save as PDF</strong>.</p>
+    <div id="editorFields"></div>
+    <div class="row-actions">
+      <button class="btn" onclick="printForm()">🖨️ Print / Save as PDF</button>
+      <button class="btn ghost small" onclick="backToForms()">← Back to templates</button>
+    </div>
+    <p class="hint">Tip: In the print dialog, choose “Save as PDF” as the destination to keep a copy.</p>
+  </section>
+</div>
+
+<!-- ===== PRINTABLE OUTPUT ===== -->
+<div id="printArea"></div>
+
+<footer class="note no-print">
+  Your data never leaves this device — it's stored only in this browser. Nothing is sent to the internet.
+</footer>
+
+<script>
+"use strict";
+
+/* ---------- storage ---------- */
+var PROFILE_KEY = "formfiller_profile_v1";
+var PROFILE_FIELDS = ["firstName","lastName","email","phone","address","city",
+  "state","zip","country","dob","org","jobTitle","dietary","emergency"];
+
+function getProfile() {
+  try { return JSON.parse(localStorage.getItem(PROFILE_KEY)) || {}; }
+  catch (e) { return {}; }
+}
+function saveProfile() {
+  var p = {};
+  PROFILE_FIELDS.forEach(function(f){ p[f] = (document.getElementById(f).value || "").trim(); });
+  localStorage.setItem(PROFILE_KEY, JSON.stringify(p));
+  var flag = document.getElementById("savedFlag");
+  flag.classList.add("show");
+  setTimeout(function(){ flag.classList.remove("show"); }, 2500);
+}
+function clearProfile() {
+  if (!confirm("Clear all your saved info from this device?")) return;
+  localStorage.removeItem(PROFILE_KEY);
+  PROFILE_FIELDS.forEach(function(f){ document.getElementById(f).value = ""; });
+}
+function loadProfileIntoInputs() {
+  var p = getProfile();
+  PROFILE_FIELDS.forEach(function(f){
+    if (p[f] != null) document.getElementById(f).value = p[f];
+  });
+}
+
+/* ---------- helpers ---------- */
+function fullName() {
+  var p = getProfile();
+  return [p.firstName, p.lastName].filter(Boolean).join(" ");
+}
+function fullAddress() {
+  var p = getProfile();
+  var line2 = [p.city, p.state, p.zip].filter(Boolean).join(", ");
+  return [p.address, line2, p.country].filter(Boolean).join("\n");
+}
+
+/* ---------- templates ----------
+   Each field: {label, key, type, value, fromProfile}
+   fromProfile pulls a saved value; user can still edit. --------- */
+function baseFrom(p) {
+  return [
+    {label:"Full name",        value: fullName()},
+    {label:"Email",            value: p.email || ""},
+    {label:"Phone",            value: p.phone || ""},
+    {label:"Mailing address",  value: fullAddress(), type:"textarea"},
+  ];
+}
+
+var TEMPLATES = {
+  webinar: {
+    title: "Webinar Registration",
+    desc: "Anthropic / HubSpot-style webinar sign-up (work email, company, role, country).",
+    build: function(p) {
+      return [
+        {label:"First name",  value: p.firstName || ""},
+        {label:"Last name",   value: p.lastName || ""},
+        {label:"Work email",  value: p.email || ""},
+        {label:"Company",     value: p.org || ""},
+        {label:"Job title",   value: p.jobTitle || ""},
+        {label:"Country / Region", value: p.country || ""},
+        {label:"Phone",       value: p.phone || ""},
+        {label:"Webinar",     value: "Production-grade agents on Claude Sonnet 5 — live with Zed and ClickHouse"},
+        {label:"Webinar date / time", value: "", placeholder:"e.g. as listed on the invite"},
+        {label:"Anything you'd like the hosts to cover?", value: "", type:"textarea"},
+      ];
+    }
+  },
+  seminar: {
+    title: "Seminar Registration",
+    desc: "Register for a workshop, class, or training seminar.",
+    build: function(p) {
+      return baseFrom(p).concat([
+        {label:"Organization / Employer", value: p.org || ""},
+        {label:"Job title / Role",        value: p.jobTitle || ""},
+        {label:"Seminar / Course name",   value: "", placeholder:"e.g. Intro to Public Speaking"},
+        {label:"Date(s) attending",       value: "", type:"date"},
+        {label:"Session / Time slot",      value: "", placeholder:"e.g. Morning session"},
+        {label:"Dietary / Accessibility needs", value: p.dietary || ""},
+        {label:"Questions for the host",   value: "", type:"textarea"},
+      ]);
+    }
+  },
+  event: {
+    title: "Event Registration",
+    desc: "Sign up for a conference, meetup, or community event.",
+    build: function(p) {
+      return baseFrom(p).concat([
+        {label:"Organization",        value: p.org || ""},
+        {label:"Event name",          value: "", placeholder:"e.g. City Tech Conference 2026"},
+        {label:"Event date",          value: "", type:"date"},
+        {label:"Number of attendees", value: "1"},
+        {label:"Ticket / Pass type",  value: "", placeholder:"e.g. General admission"},
+        {label:"Dietary / Accessibility needs", value: p.dietary || ""},
+        {label:"Emergency contact",   value: p.emergency || ""},
+      ]);
+    }
+  },
+  govt: {
+    title: "General / Government Form",
+    desc: "A general-purpose form with common official fields.",
+    build: function(p) {
+      return baseFrom(p).concat([
+        {label:"Date of birth",   value: p.dob || "", type:"date"},
+        {label:"Organization",    value: p.org || ""},
+        {label:"Reference / Case number", value: "", placeholder:"If you have one"},
+        {label:"Purpose of request", value: "", type:"textarea"},
+        {label:"Emergency contact", value: p.emergency || ""},
+      ]);
+    }
+  }
+};
+
+/* ---------- UI: tabs ---------- */
+var tabs = document.querySelectorAll(".tab");
+tabs.forEach(function(t){
+  t.addEventListener("click", function(){
+    tabs.forEach(function(x){ x.classList.remove("active"); });
+    t.classList.add("active");
+    var which = t.getAttribute("data-tab");
+    document.getElementById("tab-profile").style.display = which==="profile" ? "" : "none";
+    document.getElementById("tab-forms").style.display   = which==="forms" ? "" : "none";
+    document.getElementById("formEditor").style.display  = "none";
+    if (which==="forms") renderTemplateList();
+  });
+});
+
+/* ---------- UI: template list ---------- */
+function renderTemplateList() {
+  var host = document.getElementById("templateList");
+  host.innerHTML = "";
+  Object.keys(TEMPLATES).forEach(function(key){
+    var t = TEMPLATES[key];
+    var row = document.createElement("div");
+    row.className = "template";
+    row.innerHTML =
+      '<div><h3>'+t.title+'</h3><p>'+t.desc+'</p></div>';
+    var btn = document.createElement("button");
+    btn.className = "btn small";
+    btn.textContent = "Fill →";
+    btn.onclick = function(){ openTemplate(key); };
+    row.appendChild(btn);
+    host.appendChild(row);
+  });
+}
+
+/* ---------- UI: form editor ---------- */
+var currentFields = [];
+var currentTitle = "";
+
+function openTemplate(key) {
+  var p = getProfile();
+  if (!p.firstName && !p.email) {
+    if (!confirm("You haven't saved your info yet, so fields will be blank. Continue anyway?")) {
+      document.querySelector('.tab[data-tab="profile"]').click();
+      return;
+    }
+  }
+  var t = TEMPLATES[key];
+  currentTitle = t.title;
+  currentFields = t.build(p);
+  document.getElementById("editorTitle").textContent = t.title;
+
+  var host = document.getElementById("editorFields");
+  host.innerHTML = "";
+  currentFields.forEach(function(f, i){
+    var lbl = document.createElement("label");
+    lbl.textContent = f.label;
+    host.appendChild(lbl);
+    var el;
+    if (f.type === "textarea") {
+      el = document.createElement("textarea");
+    } else {
+      el = document.createElement("input");
+      el.type = f.type === "date" ? "date" : "text";
+    }
+    el.value = f.value || "";
+    if (f.placeholder) el.placeholder = f.placeholder;
+    el.setAttribute("data-idx", i);
+    host.appendChild(el);
+  });
+
+  document.getElementById("tab-forms").style.display = "none";
+  document.getElementById("formEditor").style.display = "";
+  window.scrollTo(0,0);
+}
+
+function backToForms() {
+  document.getElementById("formEditor").style.display = "none";
+  document.getElementById("tab-forms").style.display = "";
+}
+
+function collectEditorValues() {
+  var els = document.querySelectorAll("#editorFields [data-idx]");
+  var out = [];
+  els.forEach(function(el){
+    var i = +el.getAttribute("data-idx");
+    out.push({ label: currentFields[i].label, value: el.value });
+  });
+  return out;
+}
+
+/* ---------- print ---------- */
+function esc(s){ return String(s==null?"":s).replace(/[&<>]/g, function(c){
+  return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c]; }); }
+
+function printForm() {
+  var vals = collectEditorValues();
+  var rows = vals.map(function(v){
+    return '<tr><td class="k">'+esc(v.label)+'</td><td>'+esc(v.value).replace(/\n/g,"<br>")+'</td></tr>';
+  }).join("");
+  var today = new Date().toLocaleDateString();
+  document.getElementById("printArea").innerHTML =
+    '<h1>'+esc(currentTitle)+'</h1>'+
+    '<div class="p-meta">Prepared '+esc(today)+'</div>'+
+    '<table>'+rows+'</table>'+
+    '<div class="p-sign"><div>Signature</div><div>Date</div></div>';
+  window.print();
+}
+
+/* ---------- init ---------- */
+loadProfileIntoInputs();
+</script>
+</body>
+</html>
