@@ -1,91 +1,151 @@
-# Form Filler — Seminars, Events & Webinars
+# 📝 Form Filler — Seminars, Events & Webinars
 
-A simple, **offline** app for filling out registration forms for seminars, events,
-and webinars. Save your details once, reuse them on any form with one click, then
-print or save as PDF. Built for when browser autofill isn't working — no internet,
-no install, no accounts, no tracking.
+**Fill out registration forms in seconds — even when your browser's autofill isn't working.**
 
-The whole app is a single file (`index.html`). Open it in any browser and it just works.
+Save your details once, and Form Filler drops them into ready-made registration
+forms for seminars, events, and webinars with a single tap. Review, then print or
+save as PDF. It's **one HTML file** — no install, no accounts, no internet required,
+and nothing about you ever leaves your device.
+
+> Built as a simple, reliable workaround for when browser autofill fails and you
+> still need to sign up for that seminar, event, or webinar.
 
 ---
 
-## Features
+## 📸 What it looks like
+
+| Save your info once | Pick a form | Auto-filled & ready |
+|:---:|:---:|:---:|
+| ![My Info screen](docs/1-my-info.png) | ![Choose a template](docs/2-templates.png) | ![Webinar form auto-filled](docs/3-webinar.png) |
+
+Then print or save a clean PDF:
+
+<p align="center">
+  <img src="docs/4-pdf.png" alt="Printable PDF output" width="360">
+</p>
+
+---
+
+## ✨ Features
 
 - **Save your info once** — name, email, address, phone, company, role, and more,
   stored only in your own browser on your own device.
-- **One-click auto-fill** into four ready-made templates:
-  - **Webinar Registration** — work email, company, job title, country
-    (pre-filled with the "Production-grade agents on Claude Sonnet 5" webinar title)
-  - **Seminar Registration**
-  - **Event Registration**
-  - **General / Government form**
-- **Registration link built in** — save the sign-up page URL on the form and
-  tap **Open ↗** to jump straight to the real registration page (the link also
-  appears, clickable, on the saved PDF).
-- **Print / Save as PDF** — clean, printable output with a signature line,
-  ready to keep, print, or email.
+- **One-tap auto-fill** into four ready-made templates (see below).
+- **Registration link built in** — save the sign-up page URL on the form and tap
+  **Open ↗** to jump straight to the real registration page. The link is also
+  clickable on the saved PDF.
+- **Print / Save as PDF** — clean, printable output with a signature line, ready
+  to keep, print, or email.
 - **Works fully offline** — no internet connection required, ever.
-- **Mobile-friendly** — usable on a phone; add it to your home screen like an app.
+- **Mobile-friendly** — use it on your phone and add it to your home screen like an app.
+- **Private by design** — no tracking, no accounts, no server. See [Privacy](#-privacy).
 
 ---
 
-## How to use it
+## 🚀 Quick start
 
-1. **Open the app.** Download `index.html` and open it in any web browser
+1. **Open the app.** Download [`index.html`](index.html) and open it in any browser
    (double-click on a computer, or tap the file on a phone).
-2. **My Info tab.** Enter your details once and tap **Save my info**.
-   Your details are stored only in your browser on that device — nothing is sent anywhere.
-3. **Fill a Form tab.** Pick a template. Your saved details fill in automatically.
-4. Add the event-specific details (event name, date, session), review everything,
-   then tap **Print / Save as PDF**. In the print dialog, choose *Save as PDF* as the
-   destination to keep a copy you can email or bring with you.
+2. **My Info** — enter your details once and tap **Save my info**.
+3. **Fill a Form** — pick a template. Your saved details fill in automatically.
+4. Add the event-specific details (event name, date, session), then tap
+   **Print / Save as PDF**. Choose *Save as PDF* in the print dialog to keep a copy.
 
-> **Note:** the app produces a filled, printable copy of your registration. It does
-> not submit to any organization's website — use the saved copy to complete the real
-> sign-up form quickly, or print it to bring along.
+> **Good to know:** Form Filler produces a filled, printable copy of your
+> registration. It doesn't submit to an organization's website for you — use the
+> **Open ↗** button to go to the real form, then fill it in quickly from your saved
+> details (or bring the printed PDF along).
 
 ---
 
-## Getting the app
+## 📋 The four templates
+
+| Template | Best for | Notable fields |
+|---|---|---|
+| **Webinar Registration** | Online webinars (Anthropic / HubSpot-style) | Work email, company, job title, country, registration link |
+| **Seminar Registration** | Workshops, classes, training | Course name, date(s), session/time slot, dietary/accessibility needs |
+| **Event Registration** | Conferences, meetups, community events | Event name, date, attendees, ticket type, emergency contact |
+| **General / Government Form** | Any official-style form | Date of birth, reference/case number, purpose of request |
+
+Every field is editable, so you can adapt any template to a specific form.
+
+---
+
+## 📥 Getting the app
 
 **Option A — Download the file (private, works offline).**
-Download `index.html` from this repo and open it. Nothing else needed.
+Download [`index.html`](index.html) from this repo and open it. Nothing else needed.
 
-**Option B — Free web link via GitHub Pages (repo must be public).**
-Enable it once under **Settings → Pages → Deploy from a branch → `main` / `root`**.
-Your site then goes live at:
+**Option B — Free web link via GitHub Pages.**
+Make the repository public, then enable it once under
+**Settings → Pages → Deploy from a branch → `main` / `root`**. Your site goes live at:
 
 ```
 https://<your-username>.github.io/Work-around-of-government-form-filler-/
 ```
 
-GitHub Pages is free for public repositories. The published code contains no personal
-data — your saved info always stays in your browser, never in the repo.
+GitHub Pages is free for public repositories. The published code contains **no
+personal data** — your saved info always stays in your browser, never in the repo.
 
 ---
 
-## Privacy
+## 🔒 Privacy
 
-- All your information stays in your browser's **local storage** on the device you use it on.
+- All your information is stored in your browser's **local storage**, on the device
+  you use it on.
 - The app makes **no network connections** and sends **no data** to any server.
-- Because storage is per-device, info saved on your phone stays on your phone;
-  fill **My Info** once on each device you use.
+- Because storage is per-device, info saved on your phone stays on your phone —
+  just fill **My Info** once on each device you use.
+- Clearing your browser data (or tapping **Clear** in the app) removes your saved info.
 
 ---
 
-## Project structure
+## ❓ FAQ
 
-| File          | Purpose                                                              |
-|---------------|---------------------------------------------------------------------|
-| `index.html`  | The entire app — HTML, CSS, and JavaScript in one self-contained file. |
-| `README.md`   | This documentation.                                                 |
-| `LICENSE`     | MIT license.                                                        |
+**Does it submit the form for me?**
+No — it fills out and prints/saves a copy of your answers. Use **Open ↗** to reach
+the real sign-up page and enter the details there (or bring the PDF).
 
-No build step, no dependencies, no package manager. To edit the app, open
-`index.html` in any text editor.
+**Is my data uploaded anywhere?**
+No. Everything stays in your browser. The app works with the internet turned off.
+
+**The GitHub Pages link shows a 404 — why?**
+Pages has to be turned on first (Settings → Pages), and the repo must be public.
+The site appears about a minute after you enable it.
+
+**Can I add my own fields or a new template?**
+Yes — everything is in one file. See [Contributing](#-contributing).
 
 ---
 
-## License
+## 🛠️ Contributing
 
-Released under the [MIT License](LICENSE). Free to use, modify, and share.
+Contributions are welcome! This is intentionally a **single, dependency-free file**,
+which keeps it easy to hack on:
+
+- The whole app lives in [`index.html`](index.html) — HTML, CSS, and JavaScript together.
+- **Add a template:** copy one of the entries in the `TEMPLATES` object and adjust
+  its fields.
+- **Add a field type:** fields support `text`, `date`, `textarea`, and `url`.
+- No build step, no package manager. Just open the file in a browser to test.
+
+Please keep the app offline-first and dependency-free. See [CONTRIBUTING.md](CONTRIBUTING.md)
+for a bit more detail.
+
+---
+
+## 📂 Project structure
+
+| Path | Purpose |
+|---|---|
+| `index.html` | The entire app — HTML, CSS, and JavaScript in one self-contained file. |
+| `docs/` | Screenshots used in this README. |
+| `README.md` | This documentation. |
+| `CONTRIBUTING.md` | How to make changes. |
+| `LICENSE` | MIT license. |
+
+---
+
+## 📄 License
+
+Released under the [MIT License](LICENSE) — free to use, modify, and share.
