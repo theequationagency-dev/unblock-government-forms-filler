@@ -106,6 +106,9 @@
   .template h3 { margin: 0; font-size: 15px; }
   .template p { margin: 2px 0 0; color: var(--muted); font-size: 13px; }
   .hint { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .url-row { display: flex; gap: 8px; align-items: stretch; }
+  .url-row input { flex: 1; }
+  .url-row .open-link { white-space: nowrap; flex-shrink: 0; }
   footer.note { text-align: center; color: var(--muted); font-size: 12px; padding: 10px 20px 30px; }
   .badge { display:inline-block; background:#eef2fe; color:var(--brand); font-size:11px; font-weight:700; padding:2px 8px; border-radius:999px; margin-left:8px; }
 
@@ -272,6 +275,9 @@ var TEMPLATES = {
         {label:"Country / Region", value: p.country || ""},
         {label:"Phone",       value: p.phone || ""},
         {label:"Webinar",     value: "Production-grade agents on Claude Sonnet 5 — live with Zed and ClickHouse"},
+        {label:"Registration link", type:"url",
+         value: "https://www.anthropic.com/webinars/production-grade-agents-on-claude-sonnet-5-live-with-zed-and-clickhouse",
+         placeholder:"Paste the sign-up page URL"},
         {label:"Webinar date / time", value: "", placeholder:"e.g. as listed on the invite"},
         {label:"Anything you'd like the hosts to cover?", value: "", type:"textarea"},
       ];
@@ -285,6 +291,7 @@ var TEMPLATES = {
         {label:"Organization / Employer", value: p.org || ""},
         {label:"Job title / Role",        value: p.jobTitle || ""},
         {label:"Seminar / Course name",   value: "", placeholder:"e.g. Intro to Public Speaking"},
+        {label:"Registration link",       value: "", type:"url", placeholder:"Paste the sign-up page URL"},
         {label:"Date(s) attending",       value: "", type:"date"},
         {label:"Session / Time slot",      value: "", placeholder:"e.g. Morning session"},
         {label:"Dietary / Accessibility needs", value: p.dietary || ""},
@@ -299,6 +306,7 @@ var TEMPLATES = {
       return baseFrom(p).concat([
         {label:"Organization",        value: p.org || ""},
         {label:"Event name",          value: "", placeholder:"e.g. City Tech Conference 2026"},
+        {label:"Registration link",   value: "", type:"url", placeholder:"Paste the sign-up page URL"},
         {label:"Event date",          value: "", type:"date"},
         {label:"Number of attendees", value: "1"},
         {label:"Ticket / Pass type",  value: "", placeholder:"e.g. General admission"},
@@ -388,7 +396,28 @@ function openTemplate(key) {
     el.value = f.value || "";
     if (f.placeholder) el.placeholder = f.placeholder;
     el.setAttribute("data-idx", i);
-    host.appendChild(el);
+
+    if (f.type === "url") {
+      el.type = "url";
+      el.inputMode = "url";
+      var wrap = document.createElement("div");
+      wrap.className = "url-row";
+      wrap.appendChild(el);
+      var open = document.createElement("button");
+      open.type = "button";
+      open.className = "btn small open-link";
+      open.textContent = "Open ↗";
+      open.onclick = function(){
+        var u = (el.value || "").trim();
+        if (!u) { alert("Add a link first, then tap Open."); return; }
+        if (!/^https?:\/\//i.test(u)) u = "https://" + u;
+        window.open(u, "_blank", "noopener");
+      };
+      wrap.appendChild(open);
+      host.appendChild(wrap);
+    } else {
+      host.appendChild(el);
+    }
   });
 
   document.getElementById("tab-forms").style.display = "none";
@@ -418,7 +447,14 @@ function esc(s){ return String(s==null?"":s).replace(/[&<>]/g, function(c){
 function printForm() {
   var vals = collectEditorValues();
   var rows = vals.map(function(v){
-    return '<tr><td class="k">'+esc(v.label)+'</td><td>'+esc(v.value).replace(/\n/g,"<br>")+'</td></tr>';
+    var cell;
+    if (/^https?:\/\/\S+$/i.test((v.value||"").trim())) {
+      var u = esc(v.value.trim());
+      cell = '<a href="'+u+'">'+u+'</a>';
+    } else {
+      cell = esc(v.value).replace(/\n/g,"<br>");
+    }
+    return '<tr><td class="k">'+esc(v.label)+'</td><td>'+cell+'</td></tr>';
   }).join("");
   var today = new Date().toLocaleDateString();
   document.getElementById("printArea").innerHTML =

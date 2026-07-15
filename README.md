@@ -19,6 +19,9 @@ The whole app is a single file (`index.html`). Open it in any browser and it jus
   - **Seminar Registration**
   - **Event Registration**
   - **General / Government form**
+- **Registration link built in** — save the sign-up page URL on the form and
+  tap **Open ↗** to jump straight to the real registration page (the link also
+  appears, clickable, on the saved PDF).
 - **Print / Save as PDF** — clean, printable output with a signature line,
   ready to keep, print, or email.
 - **Works fully offline** — no internet connection required, ever.
