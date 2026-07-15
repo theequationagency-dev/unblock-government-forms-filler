@@ -259,6 +259,24 @@ function baseFrom(p) {
 }
 
 var TEMPLATES = {
+  webinar: {
+    title: "Webinar Registration",
+    desc: "Anthropic / HubSpot-style webinar sign-up (work email, company, role, country).",
+    build: function(p) {
+      return [
+        {label:"First name",  value: p.firstName || ""},
+        {label:"Last name",   value: p.lastName || ""},
+        {label:"Work email",  value: p.email || ""},
+        {label:"Company",     value: p.org || ""},
+        {label:"Job title",   value: p.jobTitle || ""},
+        {label:"Country / Region", value: p.country || ""},
+        {label:"Phone",       value: p.phone || ""},
+        {label:"Webinar",     value: "Production-grade agents on Claude Sonnet 5 — live with Zed and ClickHouse"},
+        {label:"Webinar date / time", value: "", placeholder:"e.g. as listed on the invite"},
+        {label:"Anything you'd like the hosts to cover?", value: "", type:"textarea"},
+      ];
+    }
+  },
   seminar: {
     title: "Seminar Registration",
     desc: "Register for a workshop, class, or training seminar.",
