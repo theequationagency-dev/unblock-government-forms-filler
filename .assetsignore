@@ -1,0 +1,58 @@
+# Layer 1 of 2 — keep internal work out of the public Cloudflare Pages bundle.
+#
+# Only the public site is served: *.html, css, js, images, fonts, robots.txt,
+# sitemap.xml, and web manifests. Everything listed below — source docs,
+# handoffs, build config, DB schema, dependency manifests, internal tooling,
+# tests, and dotfiles — is excluded from the deployed asset bundle, so requests
+# for it return 404. Defense-in-depth backstop: functions/_middleware.js (Layer 2).
+*.md
+*.markdown
+*.mdx
+*.sql
+*.toml
+*.lock
+*.log
+*.sh
+*.bash
+*.bak
+*.old
+*.orig
+*.example
+*.sample
+*.dist
+*.tmpl
+*.template
+*.yml
+*.yaml
+*.ini
+*.conf
+*.cfg
+*.py
+*.pyc
+*.rb
+*.pl
+package.json
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+schema.sql
+wrangler.toml
+Dockerfile
+Makefile
+Procfile
+scripts
+tests
+test
+node_modules
+.github
+.assetsignore
+.gitignore
+.gitattributes
+.editorconfig
+.stylelintrc.json
+.dev.vars
+.dev.vars.*
+.env
+.env.*
+.git
+.DS_Store
