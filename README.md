@@ -4,6 +4,10 @@
 
 *by **GUILTY TREX***
 
+<p align="center">
+  <img src="docs/ole-bullfight.png" alt="¡OLÉ! — a matador waves the 'Unblock Government Forms' cape while the bull charges. To everyone who tried to block us. by GUILTY TREX" width="860">
+</p>
+
 Save your details once, and this app drops them into ready-made forms with a single
 tap. Review, then print or save as PDF. It's **one HTML file** — no install, no
 accounts, no internet required, and nothing about you ever leaves your device.
