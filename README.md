@@ -5,7 +5,7 @@
 *by **GUILTY TREX***
 
 <p align="center">
-  <img src="docs/ole-bullfight.png" alt="¡OLÉ! — a matador waves the 'Unblock Government Forms' cape while the bull charges. To everyone who tried to block us. by GUILTY TREX" width="860">
+  <img src="docs/ole-bullfight.png" alt="GUILTY TREX — a T-Rex waves a big red flag reading UNBLOCK GOVERNMENT FORMS (unblock-government-forms-filler). ¡OLÉ! to everyone who tried to block us." width="860">
 </p>
 
 Save your details once, and this app drops them into ready-made forms with a single
