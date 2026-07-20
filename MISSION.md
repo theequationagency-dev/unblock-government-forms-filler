@@ -72,3 +72,9 @@ it with someone who needs it.
 - **The Bass Agency:** https://thebassagency.com
 
 — *Victor J. Rosario, The Equation Agency LLC*
+
+---
+
+**Made in Miami-Dade County with ❤️** by Candidate **Victor J. Rosario** 🏖️
+*Expert in Digital Strategy, SEO, Network Engineering & Development*
+The Equation Agency LLC — Aventura, Florida
