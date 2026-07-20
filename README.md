@@ -141,6 +141,12 @@ https://raw.githack.com/theequationagency-dev/unblock-government-forms-filler/ma
 Tap it and it just runs — on your phone or computer. Add it to your home screen and
 it opens like an app. Nothing to install, ever.
 
+> **Saving your info:** some phone browsers (especially Safari) block permanent
+> saving on a shared web link. You can still fill and print forms right away, but to
+> **keep your saved info after closing**, either **download the file** (below) and open
+> it, or use your own **GitHub Pages** link. The app will tell you if your browser is
+> blocking saving.
+
 ### 📄 Or download it — works fully offline
 Prefer to keep your own copy? Download [`index.html`](index.html) and open it. Once
 it's on your device it works with **no internet at all**.

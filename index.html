@@ -99,6 +99,12 @@
     margin-top: 16px;
   }
   .saved-flag.show { display: block; }
+  .saved-flag.warn { background: #fff4e0; color: #9a5b00; border-color: #f2d59a; }
+  .notice {
+    background: #fff4e0; color: #8a4b00; border: 1px solid #f2d59a;
+    padding: 12px 14px; border-radius: 10px; font-size: 13px; margin: 0 0 16px;
+  }
+  .notice strong { color: #7a3f00; }
   .template-list { display: grid; gap: 12px; }
   .template {
     display: flex; justify-content: space-between; align-items: center;
@@ -218,22 +224,43 @@
 var PROFILE_KEY = "formfiller_profile_v1";
 var PROFILE_FIELDS = ["firstName","lastName","email","phone","address","city",
   "state","zip","country","dob","org","jobTitle","dietary","emergency"];
+var memProfile = null;   // in-memory fallback for browsers that block storage
+
+// Some browsers (e.g. Safari on a shared link, private mode) block localStorage.
+function storageAvailable() {
+  try {
+    localStorage.setItem("__ff_test__", "1");
+    localStorage.removeItem("__ff_test__");
+    return true;
+  } catch (e) { return false; }
+}
 
 function getProfile() {
-  try { return JSON.parse(localStorage.getItem(PROFILE_KEY)) || {}; }
-  catch (e) { return {}; }
+  try {
+    var raw = localStorage.getItem(PROFILE_KEY);
+    if (raw) return JSON.parse(raw) || {};
+  } catch (e) { /* storage blocked — fall through */ }
+  return memProfile || {};
 }
 function saveProfile() {
   var p = {};
   PROFILE_FIELDS.forEach(function(f){ p[f] = (document.getElementById(f).value || "").trim(); });
-  localStorage.setItem(PROFILE_KEY, JSON.stringify(p));
+  memProfile = p;                          // always usable for this session
+  var persisted = true;
+  try { localStorage.setItem(PROFILE_KEY, JSON.stringify(p)); }
+  catch (e) { persisted = false; }
   var flag = document.getElementById("savedFlag");
+  flag.classList.toggle("warn", !persisted);
+  flag.textContent = persisted
+    ? "✓ Saved on this device."
+    : "✓ Saved for this session. This browser is blocking permanent saving on this link — download the app or add it to your home screen to keep your info after closing.";
   flag.classList.add("show");
-  setTimeout(function(){ flag.classList.remove("show"); }, 2500);
+  setTimeout(function(){ flag.classList.remove("show"); }, persisted ? 2500 : 8000);
 }
 function clearProfile() {
   if (!confirm("Clear all your saved info from this device?")) return;
-  localStorage.removeItem(PROFILE_KEY);
+  memProfile = null;
+  try { localStorage.removeItem(PROFILE_KEY); } catch (e) {}
   PROFILE_FIELDS.forEach(function(f){ document.getElementById(f).value = ""; });
 }
 function loadProfileIntoInputs() {
@@ -472,6 +499,18 @@ function printForm() {
 
 /* ---------- init ---------- */
 loadProfileIntoInputs();
+
+// Warn up front if this browser/link can't save permanently.
+if (!storageAvailable()) {
+  var card = document.getElementById("tab-profile");
+  var note = document.createElement("div");
+  note.className = "notice";
+  note.innerHTML = "<strong>Heads up:</strong> this browser is blocking permanent saving on this link " +
+    "(common on phones opening a shared web link). You can still fill and print forms right now — " +
+    "but to <strong>keep your info after you close the page</strong>, download the app and open the file, " +
+    "or add this page to your home screen.";
+  card.insertBefore(note, card.firstChild);
+}
 </script>
 </body>
 </html>
