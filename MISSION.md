@@ -56,3 +56,14 @@ If this project helps you get un-blocked, that is the whole point. Use it, share
 with someone who needs it, and — if you can — [contribute](CONTRIBUTING.md).
 
 **We don't just automate. We build access.**
+
+---
+
+## Connect
+
+- **Campaign — Victor for Miami-Dade County Mayor:** https://victormiamidadecountymayor.com
+- **Personal:** https://victorjrosario.com
+- **The Equation Agency LLC:** https://theequationagencyllc.com
+- **The Bass Agency:** https://thebassagency.com
+
+— *Victor J. Rosario, The Equation Agency LLC*
