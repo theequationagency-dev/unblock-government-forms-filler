@@ -202,3 +202,12 @@ The site appears about a minute after you enable it.
 ## 📄 License
 
 Released under the [MIT License](LICENSE) — free to use, modify, and share.
+Copyright © 2026 The Equation Agency LLC — Aventura, Florida.
+
+---
+
+<p align="center">
+  <strong>Made in Miami-Dade County with ❤️</strong><br>
+  by Candidate <strong>Victor J. Rosario</strong> 🏖️<br>
+  <em>Expert in Digital Strategy, SEO, Network Engineering &amp; Development</em>
+</p>
