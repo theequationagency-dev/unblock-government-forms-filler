@@ -339,7 +339,7 @@ function baseFrom(p) {
 var TEMPLATES = {
   webinar: {
     title: "Webinar Registration",
-    desc: "Anthropic / HubSpot-style webinar sign-up (work email, company, role, country).",
+    desc: "Webinar sign-up — work email, company, role, country.",
     build: function(p) {
       return [
         {label:"First name",  value: p.firstName || ""},
@@ -349,9 +349,9 @@ var TEMPLATES = {
         {label:"Job title",   value: p.jobTitle || ""},
         {label:"Country / Region", value: p.country || ""},
         {label:"Phone",       value: p.phone || ""},
-        {label:"Webinar",     value: "Production-grade agents on Claude Sonnet 5 — live with Zed and ClickHouse"},
+        {label:"Webinar",     value: "", placeholder:"e.g. the webinar name"},
         {label:"Registration link", type:"url",
-         value: "https://www.anthropic.com/webinars/production-grade-agents-on-claude-sonnet-5-live-with-zed-and-clickhouse",
+         value: "",
          placeholder:"Paste the sign-up page URL"},
         {label:"Webinar date / time", value: "", placeholder:"e.g. as listed on the invite"},
         {label:"Anything you'd like the hosts to cover?", value: "", type:"textarea"},
