@@ -52,8 +52,8 @@ This is the **first public release** — the foundation. I am going to keep buil
 more tools that help people actually use websites and get through the things they are
 being kept out of. A **second part is already planned.**
 
-If this project helps you get un-blocked, that is the whole point. Use it, share it
-with someone who needs it, and — if you can — [contribute](CONTRIBUTING.md).
+If this project helps you get un-blocked, that is the whole point. Use it, and share
+it with someone who needs it.
 
 **We don't just automate. We build access.**
 

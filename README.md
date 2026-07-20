@@ -37,8 +37,8 @@ keep building tools that help people use websites and complete the things they'r
 being kept out of. A **second part is coming**. If this helps even one person get
 un-blocked, it's worth it.
 
-If this resonates with you, use it, share it, and [contribute](CONTRIBUTING.md) — the
-whole point is that everyone can connect and get through.
+If this resonates with you, use it and share it — the whole point is that everyone
+can connect and get through.
 
 > *Read the full mission in [MISSION.md](MISSION.md).*
 
@@ -152,25 +152,6 @@ No. Everything stays in your browser. The app works with the internet turned off
 Pages has to be turned on first (Settings → Pages), and the repo must be public.
 The site appears about a minute after you enable it.
 
-**Can I add my own fields or a new template?**
-Yes — everything is in one file. See [Contributing](#-contributing).
-
----
-
-## 🛠️ Contributing
-
-Contributions are welcome! This is intentionally a **single, dependency-free file**,
-which keeps it easy to hack on:
-
-- The whole app lives in [`index.html`](index.html) — HTML, CSS, and JavaScript together.
-- **Add a template:** copy one of the entries in the `TEMPLATES` object and adjust
-  its fields.
-- **Add a field type:** fields support `text`, `date`, `textarea`, and `url`.
-- No build step, no package manager. Just open the file in a browser to test.
-
-Please keep the app offline-first and dependency-free. See [CONTRIBUTING.md](CONTRIBUTING.md)
-for a bit more detail.
-
 ---
 
 ## 📂 Project structure
@@ -181,7 +162,6 @@ for a bit more detail.
 | `docs/` | Screenshots used in this README. |
 | `README.md` | This documentation. |
 | `MISSION.md` | Why this project exists and who it's for. |
-| `CONTRIBUTING.md` | How to make changes. |
 | `LICENSE` | MIT license. |
 
 ---
