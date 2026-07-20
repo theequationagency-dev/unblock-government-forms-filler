@@ -12,6 +12,38 @@ and nothing about you ever leaves your device.
 
 ---
 
+## 💬 Why this exists — a note from the founder
+
+I built this because I was being blocked.
+
+As a **political candidate**, I have personally experienced having my ability to
+participate online interfered with — being unable to complete forms, register for
+events, and take part in things that should be open to everyone. That experience
+convinced me I am not alone. I believe **founders, business owners, and everyday
+residents** run into the same walls: forms that won't submit, sign-ups that quietly
+fail, access that gets cut off.
+
+My concern is simple: when people hold privileged, back-end access to the systems we
+all rely on, that access can be misused to interfere with someone's ability to take
+part in public life. **This application is a direct, constructive response to that.**
+
+Form Filler makes sure that if a form or sign-up is being blocked for you, you still
+have a reliable, offline way to **capture your information, complete the form, and
+keep a copy** — on your own device, under your own control, with nothing sent to
+anyone. It's about giving people back access and participation.
+
+**This is the first public release.** It's the beginning, not the end — I'm going to
+keep building tools that help people use websites and complete the things they're
+being kept out of. A **second part is coming**. If this helps even one person get
+un-blocked, it's worth it.
+
+If this resonates with you, use it, share it, and [contribute](CONTRIBUTING.md) — the
+whole point is that everyone can connect and get through.
+
+> *Read the full mission in [MISSION.md](MISSION.md).*
+
+---
+
 ## 📸 What it looks like
 
 | Save your info once | Pick a form | Auto-filled & ready |
@@ -141,6 +173,7 @@ for a bit more detail.
 | `index.html` | The entire app — HTML, CSS, and JavaScript in one self-contained file. |
 | `docs/` | Screenshots used in this README. |
 | `README.md` | This documentation. |
+| `MISSION.md` | Why this project exists and who it's for. |
 | `CONTRIBUTING.md` | How to make changes. |
 | `LICENSE` | MIT license. |
 
