@@ -1,14 +1,29 @@
-# 📝 Form Filler — Seminars, Events & Webinars
+# 📝 Unblock Government Forms — Form Filler
 
-**Fill out registration forms in seconds — even when your browser's autofill isn't working.**
+**Fill out any form — anywhere in the world — in seconds, even when your browser's autofill isn't working.**
 
-Save your details once, and Form Filler drops them into ready-made registration
-forms for seminars, events, and webinars with a single tap. Review, then print or
-save as PDF. It's **one HTML file** — no install, no accounts, no internet required,
-and nothing about you ever leaves your device.
+*by **GUILTY TREX***
 
-> Built as a simple, reliable workaround for when browser autofill fails and you
-> still need to sign up for that seminar, event, or webinar.
+Save your details once, and this app drops them into ready-made forms with a single
+tap. Review, then print or save as PDF. It's **one HTML file** — no install, no
+accounts, no internet required, and nothing about you ever leaves your device.
+
+> Built as a simple, reliable way to get through when a form is being blocked for you.
+
+---
+
+## 🌍 Works with any form, anywhere in the world
+
+Wherever you are and whatever you're being kept out of, this app helps you fill it
+out and keep your own copy:
+
+- **🏛️ Government — unblocked.** Permits, applications, official and civic forms.
+- **💼 Business — unblocked.** Registrations, vendor forms, sign-ups, applications.
+- **🎓 College — unblocked.** Admissions, enrollment, financial aid, event forms.
+- **🌐 Any website — unblocked.** If a form is stopping you, this gets you through.
+
+The templates are just starting points — every field is editable, so it works with
+**any form, in any country.**
 
 ---
 
@@ -120,7 +135,7 @@ Make the repository public, then enable it once under
 **Settings → Pages → Deploy from a branch → `main` / `root`**. Your site goes live at:
 
 ```
-https://<your-username>.github.io/Work-around-of-government-form-filler-/
+https://theequationagency-dev.github.io/unblock-government-forms-filler/
 ```
 
 GitHub Pages is free for public repositories. The published code contains **no
