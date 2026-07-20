@@ -42,6 +42,13 @@ whole point is that everyone can connect and get through.
 
 > *Read the full mission in [MISSION.md](MISSION.md).*
 
+### 🔗 Connect with the founder
+
+- **Campaign:** [Victor for Miami-Dade County Mayor](https://victormiamidadecountymayor.com)
+- **Personal:** [victorjrosario.com](https://victorjrosario.com)
+- **The Equation Agency LLC:** [theequationagencyllc.com](https://theequationagencyllc.com)
+- **The Bass Agency:** [thebassagency.com](https://thebassagency.com)
+
 ---
 
 ## 📸 What it looks like
