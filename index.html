@@ -118,6 +118,11 @@
   .url-row { display: flex; gap: 8px; align-items: stretch; }
   .url-row input { flex: 1; }
   .url-row .open-link { white-space: nowrap; flex-shrink: 0; }
+  .field-row { display: flex; gap: 8px; align-items: flex-start; }
+  .field-row input, .field-row textarea { flex: 1; }
+  .field-row .btn { flex-shrink: 0; align-self: stretch; }
+  .field-row textarea ~ .btn { align-self: flex-start; }
+  .field-row .copy-btn { min-width: 68px; }
   footer.note { text-align: center; color: var(--muted); font-size: 12px; padding: 10px 20px 30px; }
   .badge { display:inline-block; background:#eef2fe; color:var(--brand); font-size:11px; font-weight:700; padding:2px 8px; border-radius:999px; margin-left:8px; }
 
@@ -198,10 +203,17 @@
   <!-- ===== FORM EDITOR (hidden until a template is chosen) ===== -->
   <section id="formEditor" class="card" style="display:none;">
     <h2 id="editorTitle">Registration</h2>
-    <p class="sub">Everything is editable. When it looks right, click <strong>Print / Save as PDF</strong>.</p>
+    <p class="sub">Everything is editable. Tap <strong>Open ↗</strong> to go to the real sign-up page,
+      then use the <strong>Copy</strong> buttons to paste each answer in — or <strong>Print / Save as PDF</strong> to keep a copy.</p>
+    <div class="notice" style="background:#eef2fe;color:#26408f;border-color:#c9d6f7;">
+      ℹ️ For your safety, this app can't type into another website's form (no site can fill
+      another site's fields). So it fills a copy here — tap <strong>Copy</strong> on a field and
+      paste it into the real form.
+    </div>
     <div id="editorFields"></div>
     <div class="row-actions">
       <button class="btn" onclick="printForm()">🖨️ Print / Save as PDF</button>
+      <button id="copyAllBtn" class="btn ghost" onclick="copyAll()">📋 Copy all</button>
       <button class="btn ghost small" onclick="backToForms()">← Back to templates</button>
     </div>
     <p class="hint">Tip: In the print dialog, choose “Save as PDF” as the destination to keep a copy.</p>
@@ -268,6 +280,37 @@ function loadProfileIntoInputs() {
   PROFILE_FIELDS.forEach(function(f){
     if (p[f] != null) document.getElementById(f).value = p[f];
   });
+}
+
+/* ---------- clipboard ---------- */
+function fallbackCopy(text) {
+  var ta = document.createElement("textarea");
+  ta.value = text; ta.setAttribute("readonly", "");
+  ta.style.position = "fixed"; ta.style.top = "-1000px"; ta.style.opacity = "0";
+  document.body.appendChild(ta); ta.focus(); ta.select();
+  try { document.execCommand("copy"); } catch (e) {}
+  document.body.removeChild(ta);
+}
+function copyText(text, btn) {
+  text = text || "";
+  var done = function(){
+    if (!btn) return;
+    var orig = btn.textContent;
+    btn.textContent = "Copied!";
+    setTimeout(function(){ btn.textContent = orig; }, 1200);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done, function(){ fallbackCopy(text); done(); });
+  } else {
+    fallbackCopy(text); done();
+  }
+}
+function copyAll() {
+  var vals = collectEditorValues();
+  var text = vals.filter(function(v){ return (v.value || "").trim(); })
+    .map(function(v){ return v.label + ": " + v.value; }).join("\n");
+  var btn = document.getElementById("copyAllBtn");
+  copyText(text, btn);
 }
 
 /* ---------- helpers ---------- */
@@ -429,12 +472,15 @@ function openTemplate(key) {
     if (f.placeholder) el.placeholder = f.placeholder;
     el.setAttribute("data-idx", i);
 
+    // Every field sits in a row with a Copy button so you can paste it
+    // into the real website's form (a site can't fill another site's fields).
+    var row = document.createElement("div");
+    row.className = "field-row";
+    row.appendChild(el);
+
     if (f.type === "url") {
       el.type = "url";
       el.inputMode = "url";
-      var wrap = document.createElement("div");
-      wrap.className = "url-row";
-      wrap.appendChild(el);
       var open = document.createElement("button");
       open.type = "button";
       open.className = "btn small open-link";
@@ -445,11 +491,17 @@ function openTemplate(key) {
         if (!/^https?:\/\//i.test(u)) u = "https://" + u;
         window.open(u, "_blank", "noopener");
       };
-      wrap.appendChild(open);
-      host.appendChild(wrap);
-    } else {
-      host.appendChild(el);
+      row.appendChild(open);
     }
+
+    var copy = document.createElement("button");
+    copy.type = "button";
+    copy.className = "btn small ghost copy-btn";
+    copy.textContent = "Copy";
+    copy.onclick = function(){ copyText(el.value, copy); };
+    row.appendChild(copy);
+
+    host.appendChild(row);
   });
 
   document.getElementById("tab-forms").style.display = "none";
