@@ -102,8 +102,8 @@ Then print or save a clean PDF:
 
 ## 🚀 Quick start
 
-1. **Open the app.** Download [`index.html`](index.html) and open it in any browser
-   (double-click on a computer, or tap the file on a phone).
+1. **Open the app** — [online with no download](#-two-ways-to-use-it--your-choice-always),
+   or download [`index.html`](index.html) and open it in any browser.
 2. **My Info** — enter your details once and tap **Save my info**.
 3. **Fill a Form** — pick a template. Your saved details fill in automatically.
 4. Add the event-specific details (event name, date, session), then tap
@@ -129,21 +129,35 @@ Every field is editable, so you can adapt any template to a specific form.
 
 ---
 
-## 📥 Getting the app
+## 📥 Two ways to use it — your choice, always
 
-**Option A — Download the file (private, works offline).**
-Download [`index.html`](index.html) from this repo and open it. Nothing else needed.
+**Repository:** `theequationagency-dev/unblock-government-forms-filler`
+👉 https://github.com/theequationagency-dev/unblock-government-forms-filler
 
-**Option B — Free web link via GitHub Pages.**
-Make the repository public, then enable it once under
-**Settings → Pages → Deploy from a branch → `main` / `root`**. Your site goes live at:
+### 🌐 Use it online — no download needed
+Don't want to download anything? You don't have to. Open it right in your browser:
+
+```
+https://raw.githack.com/theequationagency-dev/unblock-government-forms-filler/main/index.html
+```
+
+Tap it and it just runs — on your phone or computer. Add it to your home screen and
+it opens like an app. Nothing to install, ever.
+
+### 📄 Or download it — works fully offline
+Prefer to keep your own copy? Download [`index.html`](index.html) and open it. Once
+it's on your device it works with **no internet at all**.
+
+### ⭐ Optional: your own clean web link (GitHub Pages)
+For a permanent link on your own GitHub address, enable it once under
+**Settings → Pages → Deploy from a branch → `main` / `root`**. It then goes live at:
 
 ```
 https://theequationagency-dev.github.io/unblock-government-forms-filler/
 ```
 
-GitHub Pages is free for public repositories. The published code contains **no
-personal data** — your saved info always stays in your browser, never in the repo.
+Either way, the published code contains **no personal data** — your saved info always
+stays in your browser, never in the repo.
 
 ---
 
