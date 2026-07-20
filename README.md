@@ -177,9 +177,11 @@ stays in your browser, never in the repo.
 
 ## ❓ FAQ
 
-**Does it submit the form for me?**
-No — it fills out and prints/saves a copy of your answers. Use **Open ↗** to reach
-the real sign-up page and enter the details there (or bring the PDF).
+**Does it submit the form for me, or type into the other website?**
+No — for security, no web app is allowed to type into a *different* website's form
+fields. Instead this app fills a copy of your answers here. Tap **Open ↗** to reach the
+real sign-up page, then tap **Copy** on each field (or **Copy all**) and paste it in.
+You can also **Print / Save as PDF** to keep or bring a copy.
 
 **Is my data uploaded anywhere?**
 No. Everything stays in your browser. The app works with the internet turned off.
