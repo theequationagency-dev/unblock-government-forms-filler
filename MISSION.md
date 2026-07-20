@@ -66,12 +66,9 @@ it with someone who needs it.
 
 ## Connect
 
-- **Campaign — Victor for Miami-Dade County Mayor:** https://victormiamidadecountymayor.com
-- **Personal:** https://victorjrosario.com
-- **The Equation Agency LLC:** https://theequationagencyllc.com
-- **The Bass Agency:** https://thebassagency.com
+- **Website:** https://victormiamidadecountymayor.com
 
-— *Victor J. Rosario, The Equation Agency LLC*
+— *Victor J. Rosario*
 
 ---
 
