@@ -1,7 +1,12 @@
 # Our Mission
 
 **Everyone deserves to participate. This project exists to make sure a blocked form
-is never the reason someone gets shut out.**
+is never the reason someone gets shut out — for any form, anywhere in the world.**
+
+*by **GUILTY TREX***
+
+Government — unblocked. Business — unblocked. College — unblocked. Any website —
+unblocked.
 
 ---
 
