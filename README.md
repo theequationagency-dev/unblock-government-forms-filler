@@ -117,7 +117,7 @@ Then print or save a clean PDF:
 
 | Template | Best for | Notable fields |
 |---|---|---|
-| **Webinar Registration** | Online webinars (Anthropic / HubSpot-style) | Work email, company, job title, country, registration link |
+| **Webinar Registration** | Online webinars | Work email, company, job title, country, registration link |
 | **Seminar Registration** | Workshops, classes, training | Course name, date(s), session/time slot, dietary/accessibility needs |
 | **Event Registration** | Conferences, meetups, community events | Event name, date, attendees, ticket type, emergency contact |
 | **General / Government Form** | Any official-style form | Date of birth, reference/case number, purpose of request |
