@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Security: self-contained app. Block all external resources and network calls;
+     nothing leaves the device. Server-level headers are documented in SECURITY.md. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; form-action 'none'; base-uri 'none';">
+<meta name="referrer" content="no-referrer">
 <title>Form Filler — Seminars &amp; Events</title>
 <style>
   :root {
@@ -231,6 +235,13 @@
 
 <script>
 "use strict";
+
+/* ---------- security: anti-clickjacking (frame-ancestors meta is ignored,
+   so also bust out of any frame that isn't us) ---------- */
+if (window.top !== window.self) {
+  try { window.top.location = window.self.location; }
+  catch (e) { document.documentElement.style.display = "none"; }
+}
 
 /* ---------- storage ---------- */
 var PROFILE_KEY = "formfiller_profile_v1";
